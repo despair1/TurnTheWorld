@@ -6,7 +6,7 @@ public class Background : MonoBehaviour {
     SpriteRenderer sr;
     // Use this for initialization
     public float backgroundScale;
-	void Start () {
+	void Awake () {
         sr = this.GetComponent<SpriteRenderer>();
         float spriteHeight = sr.sprite.bounds.size.y;
         float worldScreenHeight = Camera.main.orthographicSize * 2;
