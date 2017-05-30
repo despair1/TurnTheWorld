@@ -3,10 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Background : MonoBehaviour {
-
-	// Use this for initialization
+    SpriteRenderer sr;
+    // Use this for initialization
+    public float backgroundScale;
 	void Start () {
-        Debug.Log(" main size " + Camera.main.orthographicSize);
+        sr = this.GetComponent<SpriteRenderer>();
+        float spriteHeight = sr.sprite.bounds.size.y;
+        float worldScreenHeight = Camera.main.orthographicSize * 2;
+        backgroundScale = worldScreenHeight / spriteHeight;
+        transform.localScale = new Vector3(backgroundScale, backgroundScale, 1);
+        
 		
 	}
 	
