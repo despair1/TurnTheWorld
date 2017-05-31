@@ -38,7 +38,7 @@ public class WorldBack : MonoBehaviour {
         return new Vector3(
             SetSign(pointOnWorldBack[0], bounds.size.x) * bounds.size.x / 2,
             SetSign(pointOnWorldBack[1], bounds.size.y) * bounds.size.y / 2,
-            pointOnWorldBack[2]);
+            -1f); // pointOnWorldBack[2]);
         
     }
     private int SetSign(float point,float bound)
