@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EditGroundCell : MonoBehaviour {
+public class EditGroundCell : MonoBehaviour, IWorldObject {
 
 	// Use this for initialization
 	void Start () {
@@ -18,5 +18,14 @@ public class EditGroundCell : MonoBehaviour {
     {
         Destroy(this.gameObject);
         Debug.Log(" edit cell down ");
+    }
+
+    public string GetPrefabName()
+    {
+        return "ground_cell";
+    }
+    public Transform GetTransform()
+    {
+        return transform;
     }
 }

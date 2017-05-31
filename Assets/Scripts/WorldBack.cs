@@ -24,12 +24,8 @@ public class WorldBack : MonoBehaviour {
         Vector2 mousePosition = Input.mousePosition; // Event.current.mousePosition;
         Vector3 pointOnWorldBack = Camera.main.ScreenToWorldPoint(new Vector3(
             mousePosition.x, mousePosition.y, Camera.main.nearClipPlane));
-        /*Vector3 tilePosition = new Vector3(
-            ((int)(cellPosition[0] / bounds.size.x*2+0.5)) * bounds.size.x/2,
-            ((int)(cellPosition[1] / bounds.size.y*2+0.5)) * bounds.size.y/2,
-            cellPosition[2]);
-        */
         _groundCell.transform.position = GetTilePosition(pointOnWorldBack, bounds); // tilePosition;
+        _groundCell.transform.parent = transform;
         Debug.Log("on mouse down");
 
     }
