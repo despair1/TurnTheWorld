@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour {
-
-	// Use this for initialization
+    Vector3 lastPos;
+    // Use this for initialization
+    public bool isMoving = true;
 	void Start () {
+        lastPos = transform.position;
 		
 	}
 	
@@ -15,5 +17,10 @@ public class Player : MonoBehaviour {
         {
             Destroy(this.gameObject);
         }
+        if (transform.position == lastPos) isMoving = false;
+        else isMoving = true;
+        lastPos = transform.position;
+        //isMoving = true;
+        
 	}
 }

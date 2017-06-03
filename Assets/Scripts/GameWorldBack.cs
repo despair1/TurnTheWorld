@@ -8,6 +8,12 @@ public class GameWorldBack : BasicWorldBack {
     public GameObject playerPrefab;
     GameObject player;
     Bounds worldBounds;
+
+    bool rotating = false;
+    Quaternion rotationDirection;
+    float rotationTime;
+    Quaternion beginRotation;
+    Quaternion endRotation;
     void Start () {
         transform.localScale = new Vector3(bg.backgroundScale, bg.backgroundScale, 1);
         worldBounds = this.gameObject.GetComponent<SpriteRenderer>().sprite.bounds;
@@ -20,9 +26,49 @@ public class GameWorldBack : BasicWorldBack {
             Debug.Log("Creating player");
             CreatePlayer();
         }
-
+        if (rotating) {
+            rotationTime += Time.deltaTime;
+            transform.rotation = Quaternion.Slerp(beginRotation, endRotation, rotationTime);
+            if (rotationTime > 1)
+            {
+                EndRotaion();
+            }
+        }
+        else
+        {
+            if (player && !player.GetComponent<Player>().isMoving)
+            {
+                if (Input.GetKeyDown(KeyCode.Q))
+                {
+                    rotationDirection = Quaternion.FromToRotation(Vector3.up, Vector3.left);
+                    BegingRotation();
+                    //RotateLeft();
+                }
+                else if (Input.GetKeyDown(KeyCode.W))
+                {
+                    rotationDirection = Quaternion.FromToRotation(Vector3.up, Vector3.right);
+                    BegingRotation();
+                }
+            }
+        }
 		
 	}
+    void EndRotaion()
+    {
+        rotating = false;
+        player.transform.parent = null;
+        player.GetComponent<Rigidbody2D>().isKinematic = false;
+    }
+    void BegingRotation()
+    {
+        rotating = true;
+        rotationTime = 0;
+        beginRotation = transform.rotation;
+        endRotation = transform.rotation * rotationDirection;
+        player.GetComponent<Rigidbody2D>().isKinematic = true;
+        player.transform.parent = transform;
+    }
+    
     void CreatePlayer()
     {
         player = InstantiateOnMousePos(playerPrefab, CorrectPlayerPos);
