@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WorldBack : MonoBehaviour {
-    public Background bg;
+public class WorldBack : BasicWorldBack {
+    
     public GameObject groundCell;
 	// Use this for initialization
 	void Start () {
@@ -18,13 +18,15 @@ public class WorldBack : MonoBehaviour {
 
     private void OnMouseDown()
     {
+        GameObject _groundCell= InstantiateOnMousePos(groundCell, GetTilePosition);
+        /*
         GameObject _groundCell = Instantiate(groundCell , new Vector3(0, 0, 0), Quaternion.identity);
         Bounds bounds = _groundCell.GetComponent<SpriteRenderer>().sprite.bounds;
         _groundCell.transform.localScale=new Vector3(bg.backgroundScale, bg.backgroundScale, 1);
         Vector2 mousePosition = Input.mousePosition; // Event.current.mousePosition;
         Vector3 pointOnWorldBack = Camera.main.ScreenToWorldPoint(new Vector3(
             mousePosition.x, mousePosition.y, Camera.main.nearClipPlane));
-        _groundCell.transform.position = GetTilePosition(pointOnWorldBack, bounds); // tilePosition;
+        _groundCell.transform.position = GetTilePosition(pointOnWorldBack, bounds); // tilePosition; */
         _groundCell.transform.parent = transform;
         Debug.Log("on mouse down");
 

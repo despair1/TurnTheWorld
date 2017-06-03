@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class GroundCell : MonoBehaviour {
-    public Background bg;
+    //public Background bg;
     // Use this for initialization
     void Start () {
         //transform.localScale = new Vector3(bg.backgroundScale, bg.backgroundScale, 1);
