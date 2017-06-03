@@ -39,11 +39,5 @@ public class WorldBack : BasicWorldBack {
             -1f); // pointOnWorldBack[2]);
         
     }
-    private int SetSign(float point,float bound)
-    {
-        float t = point / bound * 2;
-        if (t > 0) t += 0.5f;
-        else t -= 0.5f;
-        return (int)t;
-    }
+    
 }
